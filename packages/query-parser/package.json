@@ -27,43 +27,15 @@
     }
   },
   "scripts": {
-    "bootstrap": "npm run compile",
-    "prepublishOnly": "npm run compile",
-    "build": "tsdown",
-    "compile": "tsc -p tsconfig.json && gen-esm-wrapper . ./dist/.esm-wrapper.mjs",
-    "typecheck": "tsc --noEmit",
-    "eslint": "eslint",
-    "prettier": "prettier",
-    "lint": "npm run eslint . && npm run prettier -- --check .",
-    "depcheck": "depcheck",
-    "check": "npm run typecheck && npm run lint && npm run depcheck",
-    "check-ci": "npm run check",
-    "test": "mocha",
-    "test-cov": "nyc -x \"**/*.spec.*\" --reporter=lcov --reporter=text --reporter=html npm run test",
-    "test-watch": "npm run test -- --watch",
-    "test-ci": "npm run test-cov",
-    "reformat": "npm run prettier -- --write ."
+    "build": "tsdown"
   },
   "dependencies": {
     "@mongodb-js/shell-bson-parser": "^1.5.7",
     "javascript-stringify": "^2.1.0"
   },
   "devDependencies": {
-    "@mongodb-js/eslint-config-devtools": "^0.11.3",
-    "@mongodb-js/mocha-config-devtools": "^1.1.0",
-    "@mongodb-js/prettier-config-devtools": "^1.0.2",
-    "@mongodb-js/tsconfig-devtools": "^1.1.1",
-    "@types/chai": "^4.2.21",
-    "@types/mocha": "^9.1.1",
     "@types/node": "^22.15.30",
-    "@types/sinon-chai": "^3.2.5",
     "bson": "^4.6.3 || ^5 || ^6.10.3 || ^7.0.0",
-    "depcheck": "^1.4.7",
-    "eslint": "^7.25.0 || ^8.0.0",
-    "mocha": "^8.4.0",
-    "nyc": "^15.1.0",
-    "prettier": "^3.5.3",
-    "sinon": "^9.2.3",
     "tsdown": "^0.21.7",
     "typescript": "^5.9.3"
   },
