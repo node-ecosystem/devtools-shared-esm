@@ -39,6 +39,6 @@
   "devDependencies": {
     "bson": "^4.6.3 || ^5 || ^6.10.3 || ^7.0.0",
     "tsdown": "^0.21.7",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   }
 }
