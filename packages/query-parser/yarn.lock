@@ -5723,7 +5723,6 @@ __metadata:
     depcheck: "npm:^1.4.7"
     eslint: "npm:^7.25.0 || ^8.0.0"
     javascript-stringify: "npm:^2.1.0"
-    lodash: "npm:^4.17.21"
     mocha: "npm:^8.4.0"
     nyc: "npm:^15.1.0"
     prettier: "npm:^3.5.3"

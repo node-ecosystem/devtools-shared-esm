@@ -50,8 +50,7 @@
   },
   "dependencies": {
     "@mongodb-js/shell-bson-parser": "^1.5.7",
-    "javascript-stringify": "^2.1.0",
-    "lodash": "^4.17.21"
+    "javascript-stringify": "^2.1.0"
   },
   "devDependencies": {
     "@mongodb-js/eslint-config-devtools": "^0.11.3",

@@ -2,8 +2,6 @@ import parseShellStringToEJSON, {
   ParseMode,
 } from '@mongodb-js/shell-bson-parser';
 
-import _ from 'lodash';
-
 import { COLLATION_OPTIONS } from './constants';
 import { stringify, toJSString } from './stringify';
 
@@ -28,12 +26,12 @@ function isEmpty(input: string | number | null | undefined): boolean {
   if (input === null || input === undefined) {
     return true;
   }
-  const s = _.trim(typeof input === 'number' ? `${input}` : input);
+  const s = (typeof input === 'number' ? `${input}` : input).trim();
 
   if (s === '{}') {
     return true;
   }
-  return _.isEmpty(s);
+  return s.length === 0;
 }
 
 function isNumberValid(input: string | number) {
@@ -187,11 +185,11 @@ export function isProjectValid(input: string) {
   try {
     const parsed = _parseProject(input);
 
-    if (!_.isObject(parsed)) {
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
       return false;
     }
 
-    if (!_.every(parsed, isValueOkForProject)) {
+    if (!Object.values(parsed).every(isValueOkForProject)) {
       return false;
     }
 
@@ -205,16 +203,16 @@ const ALLOWED_SORT_VALUES = [1, -1, 'asc', 'desc'];
 
 function isValueOkForSortDocument(val: any): boolean {
   return (
-    _.includes(ALLOWED_SORT_VALUES, val) ||
-    !!(_.isObject(val) && (val as { $meta: string }).$meta)
+    ALLOWED_SORT_VALUES.includes(val) ||
+    !!(typeof val === 'object' && val !== null && !Array.isArray(val) && (val as { $meta: string }).$meta)
   );
 }
 
 function isValueOkForSortArray(val: any): boolean {
   return (
-    _.isArray(val) &&
+    Array.isArray(val) &&
     val.length === 2 &&
-    _.isString(val[0]) &&
+    typeof val[0] === 'string' &&
     isValueOkForSortDocument(val[1])
   );
 }
@@ -233,14 +231,15 @@ export function isSortValid(input: string) {
       return DEFAULT_SORT;
     }
 
-    if (_.isArray(parsed) && _.every(parsed, isValueOkForSortArray)) {
+    if (Array.isArray(parsed) && parsed.every(isValueOkForSortArray)) {
       return parsed;
     }
 
     if (
-      _.isObject(parsed) &&
-      !_.isArray(parsed) &&
-      _.every(parsed, isValueOkForSortDocument)
+      typeof parsed === 'object' &&
+      parsed !== null &&
+      !Array.isArray(parsed) &&
+      Object.values(parsed).every(isValueOkForSortDocument)
     ) {
       return parsed;
     }
@@ -266,15 +265,15 @@ export function isHintValid(input: string) {
   try {
     const parsed = _parseHint(input);
 
-    if (_.isString(parsed)) {
+    if (typeof parsed === 'string') {
       return parsed;
     }
 
-    if (_.isArray(parsed) || !_.isObject(parsed)) {
+    if (Array.isArray(parsed) || typeof parsed !== 'object' || parsed === null) {
       return false;
     }
 
-    if (!_.every(parsed, isValueOkForHint)) {
+    if (!Object.values(parsed).every(isValueOkForHint)) {
       return false;
     }
 
@@ -339,7 +338,7 @@ const validatorFunctions = {
 export function validate(what: string, input: string) {
   const validator =
     validatorFunctions[
-      `is${_.upperFirst(what)}Valid` as keyof typeof validatorFunctions
+      `is${what.charAt(0).toUpperCase() + what.slice(1)}Valid` as keyof typeof validatorFunctions
     ];
   if (!validator) {
     return false;
@@ -353,7 +352,7 @@ export default function queryParser(
   project: string | null = DEFAULT_PROJECT,
 ) {
   if (arguments.length === 1) {
-    if (_.isString(filter)) {
+    if (typeof filter === 'string') {
       return _parseFilter(filter);
     }
   }
