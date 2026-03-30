@@ -5,9 +5,6 @@
     "name": "MongoDB Inc",
     "email": "compass@mongodb.com"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "bugs": {
     "url": "https://github.com/node-ecosystem/devtools-shared-esm/issues"
   },
