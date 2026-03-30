@@ -22,21 +22,18 @@
     "dist"
   ],
   "license": "Apache-2.0",
-  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
-    "require": {
+    ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "import": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/.esm-wrapper.mjs"
+      "import": "./dist/index.mjs"
     }
   },
   "scripts": {
     "bootstrap": "npm run compile",
     "prepublishOnly": "npm run compile",
+    "build": "tsdown",
     "compile": "tsc -p tsconfig.json && gen-esm-wrapper . ./dist/.esm-wrapper.mjs",
     "typecheck": "tsc --noEmit",
     "eslint": "eslint",
@@ -72,6 +69,7 @@
     "nyc": "^15.1.0",
     "prettier": "^3.5.3",
     "sinon": "^9.2.3",
+    "tsdown": "^0.21.7",
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
