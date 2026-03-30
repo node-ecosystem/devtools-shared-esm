@@ -364,12 +364,4 @@ export default function queryParser(
 
 export {
   toJSString,
-  DEFAULT_FILTER,
-  DEFAULT_SORT,
-  DEFAULT_LIMIT,
-  DEFAULT_SKIP,
-  DEFAULT_PROJECT,
-  DEFAULT_COLLATION,
-  DEFAULT_MAX_TIME_MS,
-  DEFAULT_HINT,
 };
