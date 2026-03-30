@@ -16,11 +16,11 @@
   ],
   "license": "Apache-2.0",
   "type": "module",
+  "types": "./dist/index.d.mts",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
     }
   },
