@@ -3,12 +3,9 @@ import parseShellStringToEJSON, {
 } from '@mongodb-js/shell-bson-parser';
 
 import _ from 'lodash';
-import _debug from 'debug';
 
 import { COLLATION_OPTIONS } from './constants';
 import { stringify, toJSString } from './stringify';
-
-const debug = _debug('mongodb-query-parser');
 
 /** @public */
 const DEFAULT_FILTER = {};
@@ -110,8 +107,7 @@ export function isFilterValid(input: string) {
   }
   try {
     return _parseFilter(input);
-  } catch (e) {
-    debug('Filter "%s" is invalid', input, e);
+  } catch {
     return false;
   }
 }
@@ -126,7 +122,6 @@ export function isFilterValid(input: string) {
 function _isCollationValid(collation: any) {
   for (const [key, value] of Object.entries(collation)) {
     if (!COLLATION_OPTIONS[key]) {
-      debug('Collation "%s" is invalid bc of its keys', collation);
       return false;
     }
     if (
@@ -134,7 +129,6 @@ function _isCollationValid(collation: any) {
         value as string | number | boolean,
       ) === false
     ) {
-      debug('Collation "%s" is invalid bc of its values', collation);
       return false;
     }
   }
@@ -154,8 +148,7 @@ export function isCollationValid(input: string) {
   try {
     const parsed = _parseCollation(input);
     return _isCollationValid(parsed);
-  } catch (e) {
-    debug('Collation "%s" is invalid', input, e);
+  } catch {
     return false;
   }
 }
@@ -195,18 +188,15 @@ export function isProjectValid(input: string) {
     const parsed = _parseProject(input);
 
     if (!_.isObject(parsed)) {
-      debug('Project "%s" is invalid. Only documents are allowed', input);
       return false;
     }
 
     if (!_.every(parsed, isValueOkForProject)) {
-      debug('Project "%s" is invalid bc of its values', input);
       return false;
     }
 
     return parsed;
-  } catch (e) {
-    debug('Project "%s" is invalid', input, e);
+  } catch {
     return false;
   }
 }
@@ -255,10 +245,8 @@ export function isSortValid(input: string) {
       return parsed;
     }
 
-    debug('Sort "%s" is invalid bc of its values', input);
     return false;
-  } catch (e) {
-    debug('Sort "%s" is invalid', input, e);
+  } catch {
     return false;
   }
 }
@@ -283,21 +271,15 @@ export function isHintValid(input: string) {
     }
 
     if (_.isArray(parsed) || !_.isObject(parsed)) {
-      debug(
-        'Hint "%s" is invalid. Only strings or documents are allowed',
-        input,
-      );
       return false;
     }
 
     if (!_.every(parsed, isValueOkForHint)) {
-      debug('Hint "%s" is invalid bc of its values', input);
       return false;
     }
 
     return parsed;
-  } catch (e) {
-    debug('Hint "%s" is invalid', input, e);
+  } catch {
     return false;
   }
 }
@@ -360,7 +342,6 @@ export function validate(what: string, input: string) {
       `is${_.upperFirst(what)}Valid` as keyof typeof validatorFunctions
     ];
   if (!validator) {
-    debug('Do not know how to validate `%s`. Returning false.', what);
     return false;
   }
   return validator(input);
