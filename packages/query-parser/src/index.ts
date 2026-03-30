@@ -3,7 +3,7 @@ import parseShellStringToEJSON, {
 } from '@mongodb-js/shell-bson-parser';
 
 import { COLLATION_OPTIONS } from './constants';
-import { toJSString } from './stringify';
+export { toJSString } from './stringify';
 
 /** @public */
 const DEFAULT_FILTER = {};
@@ -361,7 +361,3 @@ export default function queryParser(
     project: project !== DEFAULT_PROJECT ? _parseProject(project) : project,
   };
 }
-
-export {
-  toJSString,
-};
