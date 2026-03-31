@@ -296,10 +296,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson-esm@npm:^7.2.1":
-  version: 7.2.1
-  resolution: "bson-esm@npm:7.2.1"
-  checksum: 10c0/e299e91c7cd6e76ab5e82307e6d9b0a997ba7e244228398e62b0dcefa7ffc372ca6a514a9eb70abca080bcdee8c89d2aeead98f6a1d97273dd12c1a725a801f7
+"bson@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "bson@npm:7.2.0"
+  checksum: 10c0/f6d074d910a23e9fe2d6b6c2d1095ceab11f99e2b2e351062b396d5ea5c31ae276544582374e3c0c25e579d62c9187797c75460e48e8813306dc1d23ca1b0107
   languageName: node
   linkType: hard
 
@@ -401,13 +401,13 @@ __metadata:
   resolution: "mongodb-query-parser-esm@workspace:."
   dependencies:
     "@types/node": "npm:^25.5.0"
-    bson-esm: "npm:^7.2.1"
+    bson: "npm:^7.2.0"
     javascript-stringify: "npm:^2.1.0"
-    shell-bson-parser-esm: "npm:^1.5.8"
+    shell-bson-parser-esm: "npm:^1.5.9"
     tsdown: "npm:^0.21.7"
     typescript: "npm:^6.0.2"
   peerDependencies:
-    bson-esm: ^7.0.0
+    bson: ^7.0.0
   languageName: unknown
   linkType: soft
 
@@ -546,14 +546,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shell-bson-parser-esm@npm:^1.5.8":
-  version: 1.5.8
-  resolution: "shell-bson-parser-esm@npm:1.5.8"
+"shell-bson-parser-esm@npm:^1.5.9":
+  version: 1.5.9
+  resolution: "shell-bson-parser-esm@npm:1.5.9"
   dependencies:
     acorn: "npm:^8.14.1"
   peerDependencies:
-    bson-esm: ^7.0.0
-  checksum: 10c0/338c41ccdc9b05af4ec5c70651d9d9e83bf5e48dafd698f185e0940285b6e62d0003082fd31750c4e95e56e97b0806a38e023d41d484a87c0d39ba7ec972afbf
+    bson: ^7.0.0
+  checksum: 10c0/14b58c9a2ed1c2c489d105f8b3444b9edc48e8b32f988011bef5f8988a7f20ced93c82c72fe56fa104d90b342048554d330eb84edda655b411f94c81f808695e
   languageName: node
   linkType: hard
 
