@@ -13,7 +13,7 @@ import type {
   Long,
   ObjectId,
   Timestamp,
-} from 'bson';
+} from 'bson-esm';
 import { stringify as toJavascriptString } from 'javascript-stringify';
 
 /**

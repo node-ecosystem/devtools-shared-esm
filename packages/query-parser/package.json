@@ -28,16 +28,16 @@
     "build": "tsdown"
   },
   "dependencies": {
-    "@mongodb-js/shell-bson-parser": "^1.5.7",
-    "javascript-stringify": "^2.1.0"
+    "javascript-stringify": "^2.1.0",
+    "shell-bson-parser-esm": "^1.5.7"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "bson": "^4.6.3 || ^5 || ^6.10.3 || ^7.0.0",
+    "bson-esm": "^7.2.0",
     "tsdown": "^0.21.7",
     "typescript": "^6.0.2"
   },
   "peerDependencies": {
-    "bson": "^4.6.3 || ^5 || ^6.10.3 || ^7.0.0"
+    "bson-esm": "^7.0.0"
   }
 }

@@ -1,6 +1,6 @@
 import parseShellStringToEJSON, {
   ParseMode,
-} from '@mongodb-js/shell-bson-parser';
+} from 'shell-bson-parser-esm';
 
 import { COLLATION_OPTIONS } from './constants';
 export { toJSString } from './stringify';
