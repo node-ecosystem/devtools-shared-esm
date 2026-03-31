@@ -9,7 +9,7 @@
     "url": "https://github.com/node-ecosystem/devtools-shared-esm/issues"
   },
   "homepage": "https://github.com/node-ecosystem/devtools-shared-esm",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/node-ecosystem/devtools-shared-esm.git"
