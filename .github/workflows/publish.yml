@@ -40,6 +40,11 @@ jobs:
       - name: Install dependencies & build
         working-directory: ./packages/${{ steps.extract.outputs.package_name }}
         run: yarn install && yarn build
+      - name: Create NPM release
+        working-directory: ./packages/${{ steps.extract.outputs.package_name }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create GitHub release
         uses: actions/github-script@v8
         with:
