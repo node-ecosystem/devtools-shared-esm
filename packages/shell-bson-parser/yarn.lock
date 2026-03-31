@@ -93,11 +93,11 @@ __metadata:
   resolution: "@mongodb-js/shell-bson-parser-esm@workspace:."
   dependencies:
     acorn: "npm:^8.14.1"
-    bson: "npm:^4.6.3 || ^5 || ^6.10.3 || ^7.0.0"
+    bson-esm: "npm:^7.2.0"
     tsdown: "npm:^0.21.7"
     typescript: "npm:^6.0.2"
   peerDependencies:
-    bson: ^4.6.3 || ^5 || ^6.10.3 || ^7.0.0
+    bson-esm: ^7.0.0
   languageName: unknown
   linkType: soft
 
@@ -300,10 +300,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^4.6.3 || ^5 || ^6.10.3 || ^7.0.0":
+"bson-esm@npm:^7.2.0":
   version: 7.2.0
-  resolution: "bson@npm:7.2.0"
-  checksum: 10c0/f6d074d910a23e9fe2d6b6c2d1095ceab11f99e2b2e351062b396d5ea5c31ae276544582374e3c0c25e579d62c9187797c75460e48e8813306dc1d23ca1b0107
+  resolution: "bson-esm@npm:7.2.0"
+  checksum: 10c0/77fc71f1f4c29fa7d58eb4a47977f1101dfa93a218136a5c3d91da5d442bc934b0fb89f932f46a0022f32b1fca153011dd0f378ea4960f08b77a85601a1970ed
   languageName: node
   linkType: hard
 
