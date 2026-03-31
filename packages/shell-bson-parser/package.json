@@ -1,5 +1,5 @@
 {
-  "name": "@mongodb-js/shell-bson-parser-esm",
+  "name": "shell-bson-parser-esm",
   "description": "Parse valid MongoDB shell syntax queries",
   "author": {
     "name": "MongoDB Inc",
@@ -10,7 +10,10 @@
   },
   "homepage": "https://github.com/node-ecosystem/devtools-shared-esm",
   "version": "1.5.7",
-  "repository": "github:node-ecosystem/devtools-shared-esm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-ecosystem/devtools-shared-esm.git"
+  },
   "files": [
     "dist"
   ],

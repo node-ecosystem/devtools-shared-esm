@@ -88,19 +88,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mongodb-js/shell-bson-parser-esm@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@mongodb-js/shell-bson-parser-esm@workspace:."
-  dependencies:
-    acorn: "npm:^8.14.1"
-    bson-esm: "npm:^7.2.0"
-    tsdown: "npm:^0.21.7"
-    typescript: "npm:^6.0.2"
-  peerDependencies:
-    bson-esm: ^7.0.0
-  languageName: unknown
-  linkType: soft
-
 "@napi-rs/wasm-runtime@npm:^1.1.1":
   version: 1.1.2
   resolution: "@napi-rs/wasm-runtime@npm:1.1.2"
@@ -527,6 +514,19 @@ __metadata:
   checksum: 10c0/5215ad0234e2845d4ea5bb9d836d42b03499546ddafb12075566899fc617f68794bb6f146076b6881d755de17d6c6cc73372555879ec7dce2c2feee947866ad2
   languageName: node
   linkType: hard
+
+"shell-bson-parser-esm@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "shell-bson-parser-esm@workspace:."
+  dependencies:
+    acorn: "npm:^8.14.1"
+    bson-esm: "npm:^7.2.0"
+    tsdown: "npm:^0.21.7"
+    typescript: "npm:^6.0.2"
+  peerDependencies:
+    bson-esm: ^7.0.0
+  languageName: unknown
+  linkType: soft
 
 "tinyexec@npm:^1.0.4":
   version: 1.0.4
