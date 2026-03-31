@@ -37,7 +37,7 @@
     "bson-esm": "^7.0.0"
   },
   "devDependencies": {
-    "bson-esm": "^7.2.0",
+    "bson-esm": "^7.2.1",
     "tsdown": "^0.21.7",
     "typescript": "^6.0.2"
   }
