@@ -1,4 +1,4 @@
-import * as bson from 'bson';
+import { Binary, BSONSymbol, Code, DBRef, Decimal128, Double, Int32, Long, MaxKey, MinKey, ObjectId, Timestamp, UUID } from 'bson';
 
 // Returns the same object but frozen and with a null prototype.
 function lookupMap<T extends object>(input: T): Readonly<T> {
@@ -9,9 +9,9 @@ function lookupMap<T extends object>(input: T): Readonly<T> {
 
 function NumberLong(v: any) {
   if (typeof v === 'string') {
-    return bson.Long.fromString(v);
+    return Long.fromString(v);
   } else {
-    return bson.Long.fromNumber(v);
+    return Long.fromNumber(v);
   }
 }
 
@@ -39,7 +39,7 @@ const SCOPE_NEW: { [x: string]: Function } = lookupMap({
 const SCOPE_ANY: { [x: string]: Function } = lookupMap({
   RegExp: RegExp,
   Binary: function (buffer: any, subType: any) {
-    return new bson.Binary(buffer, subType);
+    return new Binary(buffer, subType);
   },
 
   // Legacy UUID functions from
@@ -47,7 +47,7 @@ const SCOPE_ANY: { [x: string]: Function } = lookupMap({
   LegacyJavaUUID: function (u: any) {
     if (u === undefined) {
       // Generate a new UUID and format it.
-      u = new bson.UUID().toHexString();
+      u = new UUID().toHexString();
     }
 
     let hex: string = String.prototype.replace.call(u, /[{}-]/g, () => '');
@@ -74,12 +74,12 @@ const SCOPE_ANY: { [x: string]: Function } = lookupMap({
     hex = msb + lsb;
 
     const hexBuffer = Buffer.from(hex, 'hex');
-    return new bson.Binary(hexBuffer, 3);
+    return new Binary(hexBuffer, 3);
   },
   LegacyCSharpUUID: function (u: any) {
     if (u === undefined) {
       // Generate a new UUID and format it.
-      u = new bson.UUID().toHexString();
+      u = new UUID().toHexString();
     }
 
     let hex: string = String.prototype.replace.call(u, /[{}-]/g, () => '');
@@ -98,14 +98,14 @@ const SCOPE_ANY: { [x: string]: Function } = lookupMap({
     hex = a + b + c + d;
 
     const hexBuffer = Buffer.from(hex, 'hex');
-    return new bson.Binary(hexBuffer, 3);
+    return new Binary(hexBuffer, 3);
   },
   LegacyPythonUUID: function (u: any) {
     if (u === undefined) {
-      return new bson.Binary(new bson.UUID().toBinary().buffer, 3);
+      return new Binary(new UUID().toBinary().buffer, 3);
     }
 
-    return new bson.Binary(
+    return new Binary(
       Buffer.from(
         String.prototype.replace.call(u, /[{}-]/g, () => ''),
         'hex',
@@ -114,57 +114,54 @@ const SCOPE_ANY: { [x: string]: Function } = lookupMap({
     );
   },
   BinData: function (t: any, d: any) {
-    return new bson.Binary(Buffer.from(d, 'base64'), t);
+    return new Binary(Buffer.from(d, 'base64'), t);
   },
   UUID: function (u: any) {
     if (u === undefined) {
-      return new bson.UUID().toBinary();
+      return new UUID().toBinary();
     }
-    return new bson.Binary(Buffer.from(u.replace(/-/g, ''), 'hex'), 4);
+    return new Binary(Buffer.from(u.replace(/-/g, ''), 'hex'), 4);
   },
   Code: function (c: any, s: any) {
-    return new bson.Code(c, s);
+    return new Code(c, s);
   },
   DBRef: function (namespace: any, oid: any, db: any, fields: any) {
-    return new (bson as any).DBRef(namespace, oid, db, fields);
+    return new DBRef(namespace, oid, db, fields);
   },
   Decimal128: function (s: any) {
-    return bson.Decimal128.fromString(s);
+    return Decimal128.fromString(s);
   },
   NumberDecimal: function (s: any) {
-    return bson.Decimal128.fromString(s);
+    return Decimal128.fromString(s);
   },
   Double: function (s: any) {
-    return new bson.Double(s);
+    return new Double(s);
   },
   Int32: function (i: any) {
-    return new bson.Int32(i);
+    return new Int32(i);
   },
   NumberInt: function (s: any) {
-    return new bson.Int32(s);
+    return new Int32(s);
   },
   Long: function (low: any, high: any) {
-    return new bson.Long(low, high);
+    return new Long(low, high);
   },
   NumberLong: NumberLong,
   Int64: NumberLong,
   Map: function (arr: any) {
-    return new ((bson as any).Map ?? Map)(arr);
+    return new Map(arr);
   },
   MaxKey: function () {
-    return new bson.MaxKey();
+    return new MaxKey();
   },
   MinKey: function () {
-    return new bson.MinKey();
-  },
-  ObjectID: function (i: any) {
-    return new bson.ObjectId(i);
+    return new MinKey();
   },
   ObjectId: function (i: any) {
-    return new bson.ObjectId(i);
+    return new ObjectId(i);
   },
   Symbol: function (i: any) {
-    return new (bson as any).BSONSymbol(i);
+    return new BSONSymbol(i);
   },
   Timestamp: function (low: any, high: any) {
     if (
@@ -173,10 +170,10 @@ const SCOPE_ANY: { [x: string]: Function } = lookupMap({
     ) {
       // https://www.mongodb.com/docs/manual/reference/bson-types/#timestamps
       // reverse the order to match the legacy shell
-      return new bson.Timestamp({ t: low, i: high });
+      return new Timestamp({ t: low, i: high });
     }
 
-    return new bson.Timestamp(low);
+    return new Timestamp(low);
   },
   ISODate: function (input?: string): Date {
     if (input === undefined) return new Date();
@@ -220,7 +217,7 @@ type AllowedMethods = { [methodName: string]: boolean };
  */
 type ClassExpressions = {
   [member: string]: {
-    class: typeof Math | typeof Date | typeof bson.Binary;
+    class: typeof Math | typeof Date | typeof Binary;
     allowedMethods: AllowedMethods | string;
   };
 };
@@ -313,7 +310,7 @@ const ALLOWED_CLASS_EXPRESSIONS: ClassExpressions = lookupMap({
     allowedMethods: 'Date',
   }),
   Binary: lookupMap({
-    class: bson.Binary,
+    class: Binary,
     allowedMethods: {
       createFromHexString: true,
       createFromBase64: true,
