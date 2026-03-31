@@ -1,4 +1,4 @@
-import * as bson from 'bson-esm';
+import * as bson from 'bson';
 
 // Returns the same object but frozen and with a null prototype.
 function lookupMap<T extends object>(input: T): Readonly<T> {
