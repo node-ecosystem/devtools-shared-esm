@@ -10,7 +10,10 @@
   },
   "homepage": "https://github.com/node-ecosystem/devtools-shared-esm",
   "version": "4.7.7",
-  "repository": "github:node-ecosystem/devtools-shared-esm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/node-ecosystem/devtools-shared-esm.git"
+  },
   "files": [
     "dist"
   ],
