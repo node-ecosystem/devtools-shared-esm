@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "javascript-stringify": "^2.1.0",
-    "shell-bson-parser-esm": "^1.5.7"
+    "shell-bson-parser-esm": "^1.5.8"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
