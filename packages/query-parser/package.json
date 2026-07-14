@@ -32,13 +32,13 @@
   },
   "dependencies": {
     "javascript-stringify": "^2.1.0",
-    "shell-bson-parser-esm": "^1.5.9"
+    "shell-bson-parser-esm": "^1.5.11"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
-    "bson": "^7.2.0",
-    "tsdown": "^0.21.7",
-    "typescript": "^6.0.2"
+    "@types/node": "^26.1.1",
+    "bson": "^7.3.1",
+    "tsdown": "^0.22.7",
+    "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "bson": "^7.0.0"
