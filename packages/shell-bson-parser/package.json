@@ -41,5 +41,6 @@
     "bson": "^7.2.0",
     "tsdown": "^0.21.7",
     "typescript": "^6.0.2"
-  }
+  },
+  "packageManager": "yarn@4.17.1"
 }
